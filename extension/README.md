@@ -17,6 +17,7 @@ This Chrome extension forces Ctrl+Enter to send messages on ChatGPT, Gemini, and
 ## Settings
 
 Use the extension popup to enable or disable the feature per site. Changes apply immediately.
+The Gemini Gem search toggle is also available in the popup.
 
 ## Scope
 

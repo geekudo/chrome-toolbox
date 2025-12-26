@@ -1,12 +1,14 @@
 const defaults = {
   enableChatGPT: true,
   enableGemini: true,
+  enableGemManagerSearch: true,
   enableGoogleChat: true
 };
 
 const elements = {
   enableChatGPT: document.getElementById('enableChatGPT'),
   enableGemini: document.getElementById('enableGemini'),
+  enableGemManagerSearch: document.getElementById('enableGemManagerSearch'),
   enableGoogleChat: document.getElementById('enableGoogleChat')
 };
 

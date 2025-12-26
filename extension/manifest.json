@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Chrome Toolbox",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Use Ctrl+Enter to send messages on ChatGPT, Gemini, and Google Chat.",
   "permissions": [
     "storage"
@@ -46,6 +46,7 @@
       ],
       "js": [
         "common.js",
+        "vendor/jsmigemo.min.js",
         "gemini-content.js"
       ],
       "run_at": "document_idle"
@@ -60,6 +61,16 @@
       ],
       "run_at": "document_idle",
       "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "vendor/migemo-compact-dict"
+      ],
+      "matches": [
+        "https://gemini.google.com/*"
+      ]
     }
   ]
 }

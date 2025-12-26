@@ -38,6 +38,9 @@ ChatGPT、Gemini、Google Chat において、送信操作を `Ctrl + Enter` に
 ### 5.3 Gemini
 - Gemini の入力欄（rich-textarea など）に対してキー制御を行う。
 - 編集モードなど複数の入力欄に対応する。
+- Gem マネージャーに検索バーを追加する。
+- Gem 検索は名前と説明文に対して部分一致で絞り込む。
+- Gem 検索は jsmigemo によりローマ字入力でも検索可能にする。
 
 ### 5.4 Google Chat
 - Google Chat の入力欄（div/textarea 両方に対応）に対してキー制御を行う。
@@ -51,6 +54,7 @@ ChatGPT、Gemini、Google Chat において、送信操作を `Ctrl + Enter` に
 
 ## 7. UI/UX 要件
 - ブラウザの拡張アイコンから開くポップアップに ON/OFF の切り替えを用意する。
+- Gemini の Gem 検索機能もポップアップから ON/OFF できる。
 - 既存のショートカットや標準動作を破壊しない。
 
 ## 8. 制約
@@ -70,6 +74,9 @@ ChatGPT、Gemini、Google Chat において、送信操作を `Ctrl + Enter` に
 ### 9.3 Gemini
 - 入力欄で `Ctrl + Enter` が送信として動作する。
 - 編集モードなど入力欄が切り替わった場合も動作する。
+- Gem マネージャーで検索バーが表示される。
+- Gem の名前・説明文に対する検索で絞り込める。
+- ローマ字入力でも Gem を絞り込める。
 
 ### 9.4 Google Chat
 - 入力欄で `Ctrl + Enter` が送信として動作する。
