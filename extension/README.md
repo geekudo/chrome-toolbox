@@ -14,6 +14,10 @@ This Chrome extension forces Ctrl+Enter to send messages on ChatGPT, Gemini, and
 - `Ctrl + Enter`: send
 - macOS: `Ctrl + Enter`
 
+## Settings
+
+Use the extension popup to enable or disable the feature per site. Changes apply immediately.
+
 ## Scope
 
 The content scripts only run on:

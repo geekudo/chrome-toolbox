@@ -28,6 +28,8 @@ ChatGPT、Gemini、Google Chat において、送信操作を `Ctrl + Enter` に
 - Mac 環境でも `Ctrl + Enter` を送信とする。
 - 対象サイトの入力欄以外ではキー操作を変更しない。
 - サイト固有の送信ボタンをクリックする方法で送信する。
+ - 各サイトごとに機能の ON/OFF を切り替えられる。
+ - 機能 OFF のサイトでは、拡張が存在しない状態と同じ挙動にする。
 
 ### 5.2 ChatGPT
 - ChatGPT の入力欄（contenteditable / textarea）に対してキー制御を行う。
@@ -43,12 +45,12 @@ ChatGPT、Gemini、Google Chat において、送信操作を `Ctrl + Enter` に
 
 ## 6. 非機能要件
 - Manifest V3 で実装する。
-- 拡張は設定画面不要のシンプル構成とする。
+- 拡張は簡易な GUI（ポップアップ）で ON/OFF を切り替えられる。
 - 権限は最小限（対象サイトの `host_permissions` のみ）。
 - パフォーマンスに配慮し、監視は必要最小限の `MutationObserver` で行う。
 
 ## 7. UI/UX 要件
-- ユーザー操作に可視的な UI 追加は不要。
+- ブラウザの拡張アイコンから開くポップアップに ON/OFF の切り替えを用意する。
 - 既存のショートカットや標準動作を破壊しない。
 
 ## 8. 制約

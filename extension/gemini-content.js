@@ -6,6 +6,7 @@
 
   window.__ctrlEnterSenderInit({
     siteLabel: 'gemini',
+    settingKey: 'enableGemini',
     // Gemini の入力欄候補（textarea/contenteditable 両対応）
     inputSelectors: [
       'rich-textarea textarea',

@@ -1,0 +1,124 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f2ee;
+  --card: #ffffff;
+  --text: #1c1b19;
+  --muted: #6a635f;
+  --accent: #e15c3b;
+  --border: #e4ded8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 14px;
+  width: 260px;
+  background: linear-gradient(135deg, #fdf7f0 0%, #f2f0ec 100%);
+  color: var(--text);
+  font-family: "Noto Sans", "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+.header {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(26, 18, 10, 0.08);
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.settings {
+  display: grid;
+  gap: 8px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(26, 18, 10, 0.08);
+}
+
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 42px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.track {
+  position: absolute;
+  inset: 0;
+  background: #d6d1cb;
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+.thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(26, 18, 10, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.switch input:checked ~ .track {
+  background: var(--accent);
+}
+
+.switch input:checked ~ .thumb {
+  transform: translateX(18px);
+}
+
+.toggle:focus-within .track {
+  box-shadow: 0 0 0 2px rgba(225, 92, 59, 0.35);
+}
+
+.note {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  margin: 12px 0 0;
+}

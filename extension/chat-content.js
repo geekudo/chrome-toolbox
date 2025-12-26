@@ -6,6 +6,7 @@
 
   window.__ctrlEnterSenderInit({
     siteLabel: 'chat',
+    settingKey: 'enableGoogleChat',
     // Google Chat の入力欄候補（iframe 内にも適用される）
     inputSelectors: [
       'div[contenteditable="true"][role="textbox"]',

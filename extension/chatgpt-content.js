@@ -6,6 +6,7 @@
 
   window.__ctrlEnterSenderInit({
     siteLabel: 'chatgpt',
+    settingKey: 'enableChatGPT',
     // ChatGPT の入力欄候補（UI 変更に備えて複数セレクタ）
     inputSelectors: [
       'textarea#prompt-textarea',

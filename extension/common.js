@@ -9,6 +9,7 @@
     const sendButtonSelectors = config.sendButtonSelectors || [];
     const debug = Boolean(config.debug);
     const siteLabel = config.siteLabel || 'site';
+    const settingKey = config.settingKey || null;
 
     // デバッグログは明示的に有効化した時だけ出す
     const log = (...args) => {
@@ -18,7 +19,9 @@
     };
 
     // 既にイベントを付けた要素は再バインドしない
-    const boundElements = new WeakSet();
+    const boundElements = new Set();
+    let enabled = false;
+    let observer = null;
 
     // 画面上に見えている送信ボタンを探す
     const findSendButton = () => {
@@ -146,6 +149,14 @@
       log('listener attached', element.tagName);
     };
 
+    // 付けたリスナーをすべて外す（無効化時に使用）
+    const detachAll = () => {
+      for (const element of boundElements) {
+        element.removeEventListener('keydown', handleKeydown, true);
+      }
+      boundElements.clear();
+    };
+
     // 既存の DOM に対して入力欄を探索する
     const scanAndAttach = (root = document) => {
       for (const selector of inputSelectors) {
@@ -153,27 +164,71 @@
       }
     };
 
-    scanAndAttach();
-    log('initialized');
-
-    // DOM 追加に追従して動的に挿入された入力欄にも対応する
-    const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        for (const node of mutation.addedNodes) {
-          if (!(node instanceof Element)) {
-            continue;
-          }
-
-          if (node.matches && inputSelectors.some((selector) => node.matches(selector))) {
-            attachListener(node);
-          }
-
-          scanAndAttach(node);
-        }
+    const startObserving = () => {
+      if (observer) {
+        return;
       }
-    });
+      // DOM 追加に追従して動的に挿入された入力欄にも対応する
+      observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          for (const node of mutation.addedNodes) {
+            if (!(node instanceof Element)) {
+              continue;
+            }
 
-    observer.observe(document.documentElement, { childList: true, subtree: true });
+            if (node.matches && inputSelectors.some((selector) => node.matches(selector))) {
+              attachListener(node);
+            }
+
+            scanAndAttach(node);
+          }
+        }
+      });
+
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    };
+
+    const stopObserving = () => {
+      if (!observer) {
+        return;
+      }
+      observer.disconnect();
+      observer = null;
+    };
+
+    const applyEnabledState = (nextEnabled) => {
+      if (nextEnabled === enabled) {
+        return;
+      }
+      enabled = nextEnabled;
+      if (enabled) {
+        scanAndAttach();
+        startObserving();
+        log('initialized');
+      } else {
+        stopObserving();
+        detachAll();
+        log('disabled');
+      }
+    };
+
+    if (settingKey && chrome?.storage?.sync) {
+      chrome.storage.sync.get({ [settingKey]: true }, (result) => {
+        applyEnabledState(Boolean(result[settingKey]));
+      });
+
+      chrome.storage.onChanged.addListener((changes, areaName) => {
+        if (areaName !== 'sync') {
+          return;
+        }
+        if (!changes[settingKey]) {
+          return;
+        }
+        applyEnabledState(Boolean(changes[settingKey].newValue));
+      });
+    } else {
+      applyEnabledState(true);
+    }
   };
 
   window.__ctrlEnterSenderInit = initCtrlEnterSender;

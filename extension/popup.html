@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ctrl+Enter Sender</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="title">Ctrl+Enter Sender</div>
+      <div class="subtitle">Per-site toggle</div>
+    </header>
+
+    <form id="settings" class="settings" autocomplete="off">
+      <label class="toggle">
+        <span class="label">ChatGPT</span>
+        <span class="switch">
+          <input type="checkbox" id="enableChatGPT" />
+          <span class="track" aria-hidden="true"></span>
+          <span class="thumb" aria-hidden="true"></span>
+        </span>
+      </label>
+      <label class="toggle">
+        <span class="label">Gemini</span>
+        <span class="switch">
+          <input type="checkbox" id="enableGemini" />
+          <span class="track" aria-hidden="true"></span>
+          <span class="thumb" aria-hidden="true"></span>
+        </span>
+      </label>
+      <label class="toggle">
+        <span class="label">Google Chat</span>
+        <span class="switch">
+          <input type="checkbox" id="enableGoogleChat" />
+          <span class="track" aria-hidden="true"></span>
+          <span class="thumb" aria-hidden="true"></span>
+        </span>
+      </label>
+    </form>
+
+    <p class="note">Changes apply immediately.</p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
