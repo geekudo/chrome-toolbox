@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Chrome Toolbox",
+  "version": "0.1.0",
+  "description": "Use Ctrl+Enter to send messages on ChatGPT, Gemini, and Google Chat.",
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "https://gemini.google.com/*",
+    "https://chat.google.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
+      "js": [
+        "common.js",
+        "chatgpt-content.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://gemini.google.com/*"
+      ],
+      "js": [
+        "common.js",
+        "gemini-content.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://chat.google.com/*"
+      ],
+      "js": [
+        "common.js",
+        "chat-content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ]
+}
