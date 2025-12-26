@@ -58,3 +58,11 @@ ChatGPT / Gemini / Google Chat の送信操作を `Ctrl + Enter` に統一する
 ## ライセンス
 
 MIT
+
+## 参考
+
+- https://github.com/kotakahashi-4u/Enhancer4Google
+
+## 謝辞
+
+Enhancer4Google の実装・アイデアを参考にしました。ありがとうございます。
