@@ -54,3 +54,7 @@ ChatGPT / Gemini / Google Chat の送信操作を `Ctrl + Enter` に統一する
 - 送信は送信ボタンのクリックを優先し、無ければフォーム送信にフォールバック
 - 設定は `chrome.storage.sync` に保存（Chrome 終了後も保持）
 - Gem 検索は `jsmigemo` と `migemo-compact-dict` を同梱
+
+## ライセンス
+
+MIT
