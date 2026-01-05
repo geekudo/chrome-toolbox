@@ -7,6 +7,8 @@
     // サイトごとの設定（入力欄・送信ボタン・デバッグ設定）
     const inputSelectors = config.inputSelectors || [];
     const sendButtonSelectors = config.sendButtonSelectors || [];
+    const disableExecCommand = Boolean(config.disableExecCommand);
+    const preferBrowserDefaultNewline = Boolean(config.preferBrowserDefaultNewline);
     const debug = Boolean(config.debug);
     const siteLabel = config.siteLabel || 'site';
     const settingKey = config.settingKey || null;
@@ -78,9 +80,10 @@
           }
 
           // 反応がない場合はラインブレークを直接挿入
-          document.execCommand('insertLineBreak');
-          editable.dispatchEvent(new Event('input', { bubbles: true }));
-          log('inserted newline via execCommand');
+          if (!disableExecCommand) {
+            document.execCommand('insertLineBreak');
+            log('inserted newline via execCommand');
+          }
         }
       }
     };
@@ -109,6 +112,10 @@
       // Ctrl+Enter だけ送信にする（Mac でも ctrlKey を使う）
       const shouldSend = event.ctrlKey;
       if (!shouldSend) {
+        if (preferBrowserDefaultNewline) {
+          event.stopImmediatePropagation();
+          return;
+        }
         event.preventDefault();
         event.stopImmediatePropagation();
         insertNewline(event);
